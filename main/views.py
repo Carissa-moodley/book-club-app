@@ -4,16 +4,20 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
-    '''This method takes the user to the websites homepage which presents
-    all the books read so far this year.'''
+    '''
+    View function for the websites homepage. 
+    Displays all the books read so far this year.
+    '''
 
     books = Book_read.objects.all()
     return render(request, 'home.html', {'books': books})
 
 @login_required
 def vote(request):
-    '''This method lets the user vote for next months book and requires
-    the user to be logged in to vote.'''
+    '''
+    View function for the voting page.
+    Allows logged in users to vote for the next book to be read.
+    '''
 
     if request.method == 'POST':
         book_id = request.POST.get('book_id')
