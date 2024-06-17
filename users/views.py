@@ -3,7 +3,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 def signup(request):
-    '''This method allows the user to register using a sign up form.'''
+    '''
+    View function for the signup page.
+    Allows users to register using a sign up form.
+    '''
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -16,7 +19,10 @@ def signup(request):
     return render(request, 'users/register.html', {'form': form})
 
 def login_view(request):
-    '''This method allows the user to login to the site.'''
+    '''
+    View function for the login page.
+    Allows users to log in to their account.
+    '''
 
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -29,7 +35,9 @@ def login_view(request):
     return render(request, 'users/login.html', {'form': form})
 
 def logout_view(request):
-    '''This method allows the user to logout and return to the homepage'''
+    '''
+    View function to log out the user.
+    '''
 
     logout(request)
     return redirect('home')
