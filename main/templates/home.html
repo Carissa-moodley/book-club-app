@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Online Book Club</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <style>
+            .container-footer{
+                align-content: center;
+                background-color: rgb(245, 237, 237);
+            }
+
+            body{
+                background-color:rgb(243, 231, 231);
+            }
+
+            h1, h2{
+                text-align: center;
+                color:rgb(245, 151, 151);
+                font-family:Georgia, 'Times New Roman', Times, serif;
+                padding: 50px, 50px;
+            }
+            h3{
+                color:rgb(241, 111, 111);
+                font-family:Georgia, 'Times New Roman', Times, serif;
+
+            }
+
+        </style>
+   
+    </head>
+    <body>
+        <!--Nav Bar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">Mood Book Club</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">About Us</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'vote' %}">Vote</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Join</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <div class="container mt-2">
+            <h1>Welcome!</h1>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <h3> Mood is an online Book Club where we read and discuss 
+                        a variety of books each month.We've created a wonderful 
+                        online community where we share our love for reading.
+                        Thanks for joining us on our little piece of the internet!
+                        Hope to see you around!</h3>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="container mt-4 align-content=center" >
+            <h2>Books Read This Year</h2>
+            <br>
+            <div class="row justify-content-center">
+                {% for book in books %}
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        {% if book.image %}
+                            <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="No image available">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">by {{ book.author }}</p>
+                            <p class="card-text"><small class="text-muted">Read on {{ book.read_date }}</small></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+
+        <br>
+        <!--Horizontal Contact form-->
+        <div class="container-footer">
+            <h2>Get in touch!</h2>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <form class="form-horizontal" action="/action_page.php">
+                        <div class="form-group row">
+                            <label class="control-label col-md-2" for="fname">First Name:</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="email" placeholder="Enter your first name" name="fname">
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <label class="control-label col-md-2" for="lname">Last Name:</label>
+                            <div class="col-md-9">          
+                                <input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="lname">
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <label class="control-label col-md-2" for="contact">Contact Number:</label>
+                            <div class="col-md-9">          
+                                <input type="text" class="form-control" id="contact" placeholder="Enter your contact number" name="contact">
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <label class="control-label col-md-2" for="email">Email:</label>
+                            <div class="col-md-9">          
+                                <input type="text" class="form-control" id="email" placeholder="Enter your email address" name="email">
+                            </div>
+                        </div>
+                     
+                        <div class="form-group row">        
+                            <div class="col-md-offset-2 col-md-9">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
