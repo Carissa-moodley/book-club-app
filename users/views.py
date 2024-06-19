@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+
 def signup(request):
     '''
     View function for the signup page.
@@ -18,6 +19,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'users/register.html', {'form': form})
 
+
 def login_view(request):
     '''
     View function for the login page.
@@ -33,6 +35,7 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
+
 
 def logout_view(request):
     '''

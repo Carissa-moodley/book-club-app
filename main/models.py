@@ -17,6 +17,7 @@ class Book_read(models.Model):
         String representation of the Book_read model.
         '''
         return self.title
+    
 
 class Book_next(models.Model):
     '''
@@ -33,6 +34,7 @@ class Book_next(models.Model):
         String representation of the Book_next model.
         '''
         return self.title
+
 
 class Vote(models.Model):
     '''

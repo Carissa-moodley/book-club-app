@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .models import Book_read, Vote, Book_next
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 def home(request):
     '''
@@ -12,13 +13,15 @@ def home(request):
     books = Book_read.objects.all()
     return render(request, 'home.html', {'books': books})
 
+
 def about(request):
     '''
     View function for the about page of the site.
     Displays information about the book club.
     '''
-    
+
     return render(request, 'about.html')
+
 
 @login_required
 def vote(request):
