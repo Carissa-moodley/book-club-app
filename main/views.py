@@ -12,6 +12,14 @@ def home(request):
     books = Book_read.objects.all()
     return render(request, 'home.html', {'books': books})
 
+def about(request):
+    '''
+    View function for the about page of the site.
+    Displays information about the book club.
+    '''
+    
+    return render(request, 'about.html')
+
 @login_required
 def vote(request):
     '''
